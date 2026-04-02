@@ -1,0 +1,26 @@
+version: 2
+
+builds:
+  - main: ./cmd/tgmsgcleaner
+    binary: tgmsgcleaner
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+
+brews:
+  - repository:
+      owner: anik1ng
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    homepage: "https://github.com/anik1ng/tgmsgcleaner"
+    description: "Clean up your Telegram presence"
